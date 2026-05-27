@@ -57,4 +57,26 @@ function playGame(){
     }
 }
 
-playGame();
+// overall scoreboard
+const scoreboard = document.createElement("div");
+scoreboard.classList.add("scoreboard");
+scoreboard.style.display = `flex`;
+scoreboard.style.justifyContent = `space-between`;
+scoreboard.style.padding = `15px 50px`;
+scoreboard.style.backgroundColor = "RGB(152,127,36)"
+scoreboard.style.color = `RGB(102,112,0)`
+
+const humanScoreboard = document.createElement("h1");
+humanScoreboard.textContent = `Human: ${humanScore}`
+
+const computerScoreboard = document.createElement("h1");
+computerScoreboard.textContent = `Computer: ${computerScore}`
+
+scoreboard.appendChild(humanScoreboard);
+scoreboard.appendChild(computerScoreboard);
+
+document.body.appendChild(scoreboard);
+
+// plays
+const rounds = document.createElement("div");
+

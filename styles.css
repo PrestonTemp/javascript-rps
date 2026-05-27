@@ -1,0 +1,44 @@
+@import url('https://googleapis.com');
+
+* {
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Roboto', sans-serif;
+    background-color: darkblue;
+    color: white;
+    font-size: 20px;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    flex-direction: column;
+}
+
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: pink;
+    height: 48px;
+    flex-flow: row nowrap;
+}
+
+.options{
+    display: flex;
+    flex-flow: row nowrap;
+    background-color: black;
+    justify-content: center;
+    align-items: center;
+    height: 180px;
+    gap: 200px;
+}
+
+button{
+    border: none;
+    border-radius: 8px;
+    background-color: yellow;
+    color: darkred;
+    height: 36px;
+    width: 140px;
+}
