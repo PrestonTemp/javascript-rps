@@ -16,9 +16,7 @@ function getComputerChoice(){
     return null;
 }
 
-function getHumanChoice(){
-    let ans = prompt("Rock, paper, or scissors?");
-
+function getHumanChoice(ans){
     return ans.toLowerCase();
 }
 
@@ -27,35 +25,52 @@ function playRound(humanChoice, computerChoice){
         (humanChoice == "paper" && computerChoice == "rock") ||
         (humanChoice == "scissors" && computerChoice == "paper")
     ){
-        console.log("You win!");
         humanScore++;
+        console.log("You win!");
     }
     else if(humanChoice == computerChoice){
-        console.log("You Tied!");
         humanScore += 0.5;
         computerScore += 0.5;
+        console.log("You Tied!");
     }
     else{
-        console.log("You lost!");
         computerScore++;
+        console.log("You lost!");
     }
 }
 
-function playGame(){
-    for(let i = 0; i < 5; i++){
-        playRound(getHumanChoice(), getComputerChoice());
-    }
+function updateScoreboard() {
+    humanScoreboard.textContent = `Human: ${humanScore}`;
+    computerScoreboard.textContent = `Computer: ${computerScore}`;
+}
 
-    if(humanScore > computerScore){
-        console.log("You are the winner!");
+function checkDone(buttons){
+    const q = document.querySelector(".options");
+    if (humanScore == computerScore){
+        return;
     }
-    else if(humanScore < computerScore){
-        console.log("You are the loser!");
+    else if (humanScore > computerScore){
+        rounds.textContent = "You win!";
+        q.remove();
     }
-    else{
-    console.log("You tied!");
+    else if(computerScore > humanScore){
+        rounds.textContent = "You lose!";
+        q.remove();
     }
 }
+
+// Button working + making it around
+const buttons = document.querySelectorAll(".options button");
+buttons.forEach(button => {
+    button.addEventListener("click", (event) => {
+        const h = getHumanChoice(event.target.textContent);
+        playRound(h, getComputerChoice());
+        updateScoreboard();
+        if((humanScore >= 5) || (computerScore >= 5)){
+            checkDone(buttons);
+        }
+    })
+})
 
 // overall scoreboard
 const scoreboard = document.createElement("div");
@@ -77,6 +92,14 @@ scoreboard.appendChild(computerScoreboard);
 
 document.body.appendChild(scoreboard);
 
-// plays
+// Display
 const rounds = document.createElement("div");
+rounds.style.backgroundColor = "red";
+rounds.style.color = `darkpink`;
+rounds.style.height = `300px`;
+rounds.style.display = `flex;`
+rounds.style.justifyContent = 'center';
+document.body.appendChild(rounds);
+
+
 
